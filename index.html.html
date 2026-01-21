@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List Acil UTBK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    .music-btn {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px;
+      background: #6a1b9a;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .motivation {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #6a1b9a;
+    }
+
+    .task {
+      background: #f7f7f7;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📝 To-Do List Acil Belajar UTBK</h1>
+
+<p class="intro">
+ini ada beberapa hal yang harus kamu lakukan  
+dan kamu harus ttp semangattttt 💖🔥
+</p>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Musik</button>
+
+<audio id="bgm" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<div class="motivation">💪 mantappppp acil kmu kerennn</div>
+<div class="task">
+  <input type="checkbox" onchange="toggle(0)">
+  <span id="task0">17.00 - 18.00 | Beberes & istirahat</span>
+</div>
+
+<div class="motivation">🚀 ayokkk kemonn cill u ken du it</div>
+<div class="task">
+  <input type="checkbox" onchange="toggle(1)">
+  <span id="task1">19.00 - 19.30 | Makan</span>
+</div>
+
+<div class="motivation">✨ KMU KEREN BANGET DIKIT LAGI SELESAI</div>
+<div class="task">
+  <input type="checkbox" onchange="toggle(2)">
+  <span id="task2">19.30 - 21.00 | Belajar UTBK</span>
+</div>
+
+<div class="motivation">
+🎉 YEYYYY SELAMATTT KMU MENYELESAIKAN LIST HARI INI  
+TET TERET TET TETTTTTT?!?!?!
+</div>
+<div class="task">
+  <input type="checkbox" onchange="toggle(3)">
+  <span id="task3">
+    21.00 - 22.00 | Istirahat & menyiapkan perlengkapan sekolah besok
+  </span>
+</div>
+
+</div>
+
+<script>
+  function toggle(i) {
+    const el = document.getElementById("task" + i);
+    el.classList.toggle("done");
+    localStorage.setItem("task" + i, el.classList.contains("done"));
+  }
+
+  for (let i = 0; i < 4; i++) {
+    if (localStorage.getItem("task" + i) === "true") {
+      document.getElementById("task" + i).classList.add("done");
+      document.querySelectorAll("input")[i].checked = true;
+    }
+  }
+
+  function toggleMusic() {
+    const music = document.getElementById("bgm");
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
+</body>
+</html>
